@@ -1,0 +1,10 @@
+/*
+====================
+Bootstrap Components
+====================
+*/
+
+.list-group#project-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
