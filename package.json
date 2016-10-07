@@ -1,0 +1,26 @@
+{
+  "name": "issue_tracker",
+  "version": "1.0.0",
+  "description": "web3 project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halfanimal/IssueTracker.git"
+  },
+  "keywords": [
+    "web3",
+    "issue_traker"
+  ],
+  "author": "web3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/halfanimal/IssueTracker/issues"
+  },
+  "homepage": "https://github.com/halfanimal/IssueTracker#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
