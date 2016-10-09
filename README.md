@@ -16,10 +16,11 @@ These are the iterations in which you will create the Issue Tracker. They have b
 
 The milestones will each be explained in more detail further down in this document.
 
-1. **HTML/CSS Prototype with Web Server** (due: Week 4)
-2. **Logic, RiotJS, localStorage** (due: Week 9)
-3. **RESTful API (due: Week 11) 3B Custom back end service (Optional)** (due: Week 14)
-4. **Deployment** (due: Week 13)
+1. [**HTML/CSS Prototype with Web Server** (due: Week 4)](#milestone-1---htmlcss-prototype-with-web-server)
+2. [**Logic, RiotJS, localStorage** (due: Week 9)](#milestone-2---logic-riotjs-localstorage)
+3. [**RESTful API (due: Week 11)](#milestone-3---restful-api)
+  * [**3B Custom back end service (Optional)** (due: Week 14)](#milestone-3b-optional-write-your-own-back-end-service)
+4. [**Deployment** (due: Week 13)](#milestone-4-deployment)
 
 ## Mockup
 This is a mockup to show the visible feature set of the Issue Tracker. It is not meant to be a screen design, you are free to design the application as it suits you. For example you are free to display the priorities of the issues in a way that you think is good user interaction - you could color them diﬀerently, you could put them in diﬀerent ‘priority groups’ or do something else completely.
