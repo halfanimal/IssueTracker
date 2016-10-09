@@ -18,7 +18,7 @@ The milestones will each be explained in more detail further down in this docume
 
 1. [**HTML/CSS Prototype with Web Server** (due: Week 4)](#milestone-1---htmlcss-prototype-with-web-server)
 2. [**Logic, RiotJS, localStorage** (due: Week 9)](#milestone-2---logic-riotjs-localstorage)
-3. [**RESTful API (due: Week 11)](#milestone-3---restful-api)
+3. [**RESTful API** (due: Week 11)](#milestone-3---restful-api)
   * [**3B Custom back end service (Optional)** (due: Week 14)](#milestone-3b-optional-write-your-own-back-end-service)
 4. [**Deployment** (due: Week 13)](#milestone-4-deployment)
 
