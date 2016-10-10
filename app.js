@@ -20,6 +20,7 @@ http.createServer( function(req, res) {
     var validExtensions = {
         ".html" : "text/html",
         ".js": "application/javascript",
+        ".tag": "riot/tag",
         ".css": "text/css",
         ".txt": "text/plain",
         ".jpg": "image/jpeg",

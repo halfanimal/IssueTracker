@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZHAW - Web Engineering Issue Tracker</title>
+
+    <!-- Load jQuery & Bootstrap js -->
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Load jQuery-UI widgets -->
+    <script src="/node_modules/jquery-ui/ui/widgets/datepicker.js"></script>
+
+    <!-- Load custom js -->
+    <script src="/src/resources/js/form.js"></script>
+
+    <!-- Load jQuery-UI css -->
+    <link href="/node_modules/jquery-ui/themes/base/all.css" rel="stylesheet">
+
+    <!-- Load Bootstrap css -->
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Load custom css -->
+    <link href="/src/resources/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                        IssueTracker
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <projects></projects>
+
+        <new-issue></new-issue>
+
+        <issues></issues>
+    </div>
+
+    <footer class="footer navbar navbar-default navbar-fixed-bottom vertical-align">
+        <div class="container">
+            <div class="row">
+                <div class=".col-md-6 .col-md-offset-3 text-center">
+                    <a class="footer-link" href="#">Privacy</a>
+                    <a class="footer-link" href="#">Terms and Conditions</a>
+                    <a class="footer-link" href="#">Feedback</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="riot/tag" src="/src/models/projects.tag"></script>
+    <script type="riot/tag" src="/src/models/new-issue.tag"></script>
+    <script type="riot/tag" src="/src/models/issues.tag"></script>
+
+    <script src="/node_modules/riot/riot+compiler.min.js"></script>
+
+    <script>riot.mount('projects')</script>
+    <script>riot.mount('new-issue')</script>
+    <script>riot.mount('issues')</script>
+</body>
+</html>

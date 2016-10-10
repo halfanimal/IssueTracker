@@ -23,6 +23,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.1",
-    "jquery-ui": "^1.12.1"
+    "jquery-ui": "^1.12.1",
+    "riot": "^2.6.3"
   }
 }
