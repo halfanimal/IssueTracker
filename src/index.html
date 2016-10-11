@@ -51,13 +51,13 @@
         </nav>
     </header>
 
-    <div class="container">
-        <projects></projects>
+    <main class="content-body">
+        <nav-projects></nav-projects>
 
         <new-issue></new-issue>
 
         <issues></issues>
-    </div>
+    </main>
 
     <footer class="footer navbar navbar-default navbar-fixed-bottom vertical-align">
         <div class="container">
@@ -71,14 +71,18 @@
         </div>
     </footer>
 
-    <script type="riot/tag" src="/src/models/projects.tag"></script>
+    <script type="riot/tag" src="/src/models/nav-projects.tag"></script>
     <script type="riot/tag" src="/src/models/new-issue.tag"></script>
     <script type="riot/tag" src="/src/models/issues.tag"></script>
 
     <script src="/node_modules/riot/riot+compiler.min.js"></script>
 
-    <script>riot.mount('projects')</script>
-    <script>riot.mount('new-issue')</script>
-    <script>riot.mount('issues')</script>
+    <script>
+        riot.compile(function() {
+            //riot.route.base('/src')
+            riot.mount('*')
+            //riot.route.start(true)
+        })
+    </script>
 </body>
 </html>

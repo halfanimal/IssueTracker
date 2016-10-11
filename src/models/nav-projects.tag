@@ -1,4 +1,4 @@
-<projects>
+<nav-projects>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Projects</h3>
@@ -23,7 +23,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-    </script>
-</projects>
+</nav-projects>
