@@ -78,10 +78,13 @@
     <script src="/node_modules/riot/riot+compiler.min.js"></script>
 
     <script>
-        riot.compile(function() {
-            //riot.route.base('/src')
-            riot.mount('*')
-            //riot.route.start(true)
+        riot.mount('project-list');
+        riot.mount('new-issue');
+        riot.mount('issue-list');
+
+        riot.route.start(true);
+        riot.route('/project/*', function(name){
+            console.log(name);
         })
     </script>
 </body>
