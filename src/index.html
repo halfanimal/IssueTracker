@@ -51,12 +51,12 @@
         </nav>
     </header>
 
-    <main class="content-body">
-        <nav-projects></nav-projects>
+    <main class="container content-body">
+        <project-list></project-list>
 
         <new-issue></new-issue>
 
-        <issues></issues>
+        <issue-list></issue-list>
     </main>
 
     <footer class="footer navbar navbar-default navbar-fixed-bottom vertical-align">
@@ -71,9 +71,9 @@
         </div>
     </footer>
 
-    <script type="riot/tag" src="/src/models/nav-projects.tag"></script>
-    <script type="riot/tag" src="/src/models/new-issue.tag"></script>
-    <script type="riot/tag" src="/src/models/issues.tag"></script>
+    <script type="riot/tag" src="/src/views/project-list.tag"></script>
+    <script type="riot/tag" src="/src/views/new-issue.tag"></script>
+    <script type="riot/tag" src="/src/views/issue-list.tag"></script>
 
     <script src="/node_modules/riot/riot+compiler.min.js"></script>
 

@@ -1,66 +1,17 @@
-/**
- * Created by furka on 08.10.2016.
- */
+var express = require('express');
+const path = require("path");
+
+var app = express();
 
 const port = 8080;
-const serverUrl = "127.0.0.1";
 
-const http = require("http");
-const path = require("path");
-const fs = require("fs");
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'src', 'index.html'));
+})
 
-console.log("Starting web server at " + serverUrl + ":" + port);
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+app.use('/src', express.static(path.join(__dirname, 'src')));
 
-http.createServer( function(req, res) {
-    var now = new Date();
-
-    var filename = req.url || "index.html"
-    var ext = path.extname(filename);
-    var localPath = __dirname;
-    var validExtensions = {
-        ".html" : "text/html",
-        ".js": "application/javascript",
-        ".tag": "riot/tag",
-        ".css": "text/css",
-        ".txt": "text/plain",
-        ".jpg": "image/jpeg",
-        ".gif": "image/gif",
-        ".png": "image/png",
-        ".woff2": "font/woff2",
-        ".ico": "image/x-icon"
-    };
-    var isValidExt = validExtensions[ext];
-
-    if (isValidExt) {
-        localPath += filename;
-        fs.exists(localPath, function(exists) {
-            if(exists) {
-                console.log("Serving file: " + localPath);
-                getFile(localPath, res, isValidExt);
-            } else {
-                console.log("File not found: " + localPath);
-                res.writeHead(404);
-                res.end();
-            }
-        });
-    } else {
-        console.log("Invalid file extension detected: " + ext)
-    }
-
-}).listen(port, function(){
-    console.log("Server listening on: http://localhost:%s", port);
-});
-
-function getFile(localPath, res, mimeType) {
-    fs.readFile(localPath, function(err, contents) {
-        if(!err) {
-            res.setHeader("Content-Length", contents.length);
-            res.setHeader("Content-Type", mimeType);
-            res.statusCode = 200;
-            res.end(contents);
-        } else {
-            res.writeHead(500);
-            res.end();
-        }
-    });
-}
+app.listen(port, function () {
+    console.log('Server listening on: http://localhost:%s', port);
+})

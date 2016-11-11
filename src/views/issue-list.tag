@@ -1,4 +1,4 @@
-<issues>
+<issue-list>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Issues</h3>
@@ -48,4 +48,4 @@
             </table>
         </div>
     </div>
-</issues>
+</issue-list>
