@@ -23,5 +23,3 @@ class IssueTracker {
         self.trigger('fetchCollection');
     }
 }
-
-var i = new IssueTracker();
