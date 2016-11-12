@@ -12,7 +12,7 @@
     <script src="/node_modules/jquery-ui/ui/widgets/datepicker.js"></script>
 
     <!-- Load custom js -->
-    <script src="/src/resources/js/form.js"></script>
+    <script src="/public/resources/js/form.js"></script>
 
     <!-- Load jQuery-UI css -->
     <link href="/node_modules/jquery-ui/themes/base/all.css" rel="stylesheet">
@@ -21,7 +21,7 @@
     <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Load custom css -->
-    <link href="/src/resources/css/style.css" rel="stylesheet">
+    <link href="/public/resources/css/style.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -70,12 +70,16 @@
             </div>
         </div>
     </footer>
-
-    <script type="riot/tag" src="/src/views/project-list.tag"></script>
-    <script type="riot/tag" src="/src/views/new-issue.tag"></script>
-    <script type="riot/tag" src="/src/views/issue-list.tag"></script>
+s
+    <script type="riot/tag" src="/public/views/project-list.tag"></script>
+    <script type="riot/tag" src="/public/views/new-issue.tag"></script>
+    <script type="riot/tag" src="/public/views/issue-list.tag"></script>
 
     <script src="/node_modules/riot/riot+compiler.min.js"></script>
+
+    <script src="/public/models/issue.js"></script>
+    <script src="/public/models/project.js"></script>
+    <script src="/public/models/issue-tracker.js"></script>
 
     <script>
         riot.mount('project-list');

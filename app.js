@@ -6,7 +6,7 @@ var app = express();
 const port = 8080;
 
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
-app.use('/src', express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
