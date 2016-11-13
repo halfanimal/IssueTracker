@@ -12,10 +12,11 @@ class IssueTracker {
 
         self.on('updateCollection', function() {
             localStorage.setItem(self.localStorageKey, JSON.stringify(self.collection));
-            self.trigger('collectionUpdated', self.collection);
+            self.trigger('collectionUpdated');
         })
 
         self.on('addProject', function(project) {
+            console.log('Add project to collection.');
             self.collection.push(project);
             self.trigger('updateCollection');
         });

@@ -11,6 +11,7 @@ class Project {
             issue.id = self.uuid();
             self.collection.push(issue);
             self.trigger('issueAdded');
+            self.trigger('updateCollection');
         });
         
         self.on('removeIssue', function(issue) {
@@ -23,6 +24,7 @@ class Project {
             }
             self.collection.splice(indexToRemove, 1);
             self.trigger('issueRemoved');
+            self.trigger('updateCollection');
         })
     }
 
