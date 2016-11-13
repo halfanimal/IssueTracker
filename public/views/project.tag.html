@@ -1,0 +1,21 @@
+<project>
+
+    <li class="list-group-item project">
+        <span class="badge" if={ getOpenIssues() > 0 }> { getOpenIssues() } </span>
+        { title }
+    </li>
+
+    <script>
+        var tag = this;
+
+        tag.getOpenIssues = function() {
+            var openIssueCount = 0;
+            tag.collection.forEach(function(issue) {
+                if(issue.done == false) {
+                    openIssueCount++;
+                }
+            });
+            return openIssueCount;
+        }
+    </script>
+</project>

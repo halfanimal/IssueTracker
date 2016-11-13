@@ -1,0 +1,21 @@
+<new-project>
+    <div class="input-group">
+        <input type="text" name="title" class="form-control" placeholder="new project...">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" onclick={submit}>Create Project</button>
+        </span>
+    </div>
+
+    <script>
+        var tag = this;
+        var issueTracker = opts.issuetracker;
+
+        tag.submit = function() {
+            if(tag.title.value) {
+                issueTracker.trigger('addProject', new Project(tag.title.value));
+                tag.title.value = '';
+            }
+        }
+
+    </script>
+</new-project>

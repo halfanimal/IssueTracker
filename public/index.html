@@ -11,6 +11,8 @@
     <!-- Load jQuery-UI widgets -->
     <script src="/node_modules/jquery-ui/ui/widgets/datepicker.js"></script>
 
+    <!-- Load Bootstrap plugins js -->
+
     <!-- Load custom js -->
     <script src="/public/resources/js/form.js"></script>
 
@@ -19,6 +21,8 @@
 
     <!-- Load Bootstrap css -->
     <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Load Bootstrap plugins css -->
 
     <!-- Load custom css -->
     <link href="/public/resources/css/style.css" rel="stylesheet">
@@ -52,11 +56,7 @@
     </header>
 
     <main class="container content-body">
-        <project-list></project-list>
-
-        <new-issue></new-issue>
-
-        <issue-list></issue-list>
+        <issue-tracker></issue-tracker>
     </main>
 
     <footer class="footer navbar navbar-default navbar-fixed-bottom vertical-align">
@@ -70,10 +70,12 @@
             </div>
         </div>
     </footer>
-s
-    <script type="riot/tag" src="/public/views/project-list.tag"></script>
-    <script type="riot/tag" src="/public/views/new-issue.tag"></script>
-    <script type="riot/tag" src="/public/views/issue-list.tag"></script>
+
+    <script type="riot/tag" src="/public/views/issue-tracker.tag.html"></script>
+    <script type="riot/tag" src="/public/views/project.tag.html"></script>
+    <script type="riot/tag" src="/public/views/new-project.tag.html"></script>
+    <script type="riot/tag" src="/public/views/new-issue.tag.html"></script>
+    <script type="riot/tag" src="/public/views/issue-list.tag.html"></script>
 
     <script src="/node_modules/riot/riot+compiler.min.js"></script>
 
@@ -82,14 +84,7 @@ s
     <script src="/public/models/issue-tracker.js"></script>
 
     <script>
-        riot.mount('project-list');
-        riot.mount('new-issue');
-        riot.mount('issue-list');
-
-        riot.route.start(true);
-        riot.route('/project/*', function(name){
-            console.log(name);
-        })
+        riot.mount('issue-tracker');
     </script>
 </body>
 </html>

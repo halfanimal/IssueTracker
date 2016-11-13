@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<!--suppress ALL -->
+<issue-tracker>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Projects</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class="list-group project-list">
+                        <project each={ allProjects() }></project>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <new-project issuetracker={ this.issueTracker }></new-project>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var tag = this;
+
+        tag.issueTracker = new IssueTracker();
+
+        tag.allProjects = function() {
+            return tag.issueTracker.collection;
+        }
+
+        tag.issueTracker.on('collectionUpdated', function() {
+            tag.update();
+        })
+
+        tag.on('mount', function() {
+            console.log('Fetching collection from localStorage.');
+            tag.issueTracker.trigger('fetchCollection');
+        });
+
+    </script>
+</issue-tracker>
