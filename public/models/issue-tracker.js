@@ -6,12 +6,16 @@ class IssueTracker {
         self.localStorageKey = 'issueTrackerCollection';
 
         self.on('fetchCollection', function() {
-            self.collection = JSON.parse(localStorage.getItem(self.localStorageKey)) || [];
+            self.collection = (JSON.parse(localStorage.getItem(self.localStorageKey)) || []).map(function(project) {
+                return new Project(project);
+            });
             self.trigger('collectionFetched');
         });
 
         self.on('updateCollection', function() {
-            localStorage.setItem(self.localStorageKey, JSON.stringify(self.collection));
+            localStorage.setItem(self.localStorageKey, JSON.stringify(self.collection.map(function(project) {
+                return project.data;
+            })));
             self.trigger('collectionUpdated');
         })
 

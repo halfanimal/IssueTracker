@@ -1,28 +1,33 @@
 class Project {
-    constructor(title) {
+    constructor(data) {
+        console.assert(data !== undefined && data !== null);
+        console.assert(typeof(data.title) === 'string');
         let self = this;
+
+        self.data = data;
         riot.observable(self);
 
-        self.id = self.uuid();
-        self.title = title;
-        self.collection = [];
+        if(self.data.id === undefined)
+            self.id = self.uuid();
+        if(self.data.issues === undefined)
+            self.data.issues = [];
 
         self.on('addIssue', function(issue) {
             issue.id = self.uuid();
-            self.collection.push(issue);
+            self.issues.push(issue);
             self.trigger('issueAdded');
             self.trigger('updateCollection');
         });
         
         self.on('removeIssue', function(issue) {
             var indexToRemove;
-            for(i = 0; self.collection.length; i++) {
-                if(issue.id == self.collection[i].id) {
+            for(i = 0; self.data.issues.length; i++) {
+                if(issue.id == self.data.issues[i].id) {
                     indexToRemove = i;
                     break;
                 }
             }
-            self.collection.splice(indexToRemove, 1);
+            self.data.issues.splice(indexToRemove, 1);
             self.trigger('issueRemoved');
             self.trigger('updateCollection');
         })
@@ -35,6 +40,18 @@ class Project {
         });
         console.log(uuid);
         return uuid;
+    }
+
+    getOpenIssues() {
+        let self = this;
+        let openIssueCount = 0;
+        self.data.issues.forEach(function(issue) {
+            if(issue.done == false) {
+                openIssueCount++;
+            }
+        });
+        console.log('issues: ', openIssueCount);
+        return openIssueCount;
     }
 }
 

@@ -1,13 +1,10 @@
 <project>
+    <!--<button type="button" class="list-group-item">{ opts.project.title }<span class="badge">{ getOpenIssues() }</span></button>-->
 
-    <li class="list-group-item project">
-        <span class="badge" if={ getOpenIssues() > 0 }> { getOpenIssues() } </span>
-        { title }
-    </li>
-
+<button type="button" class="list-group-item active"><span class="badge">5</span>Project 1</button>
     <script>
         var tag = this;
-
+        console.log('otps: ', tag.opts.project.title);
         tag.getOpenIssues = function() {
             var openIssueCount = 0;
             tag.collection.forEach(function(issue) {

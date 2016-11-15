@@ -71,17 +71,18 @@
         </div>
     </footer>
 
+
+    <script src="/node_modules/riot/riot+compiler.min.js"></script>
+    <script src="/public/models/issue.js"></script>
+    <script src="/public/models/project.js"></script>
+    <script src="/public/models/issue-tracker.js"></script>
+
     <script type="riot/tag" src="/public/views/issue-tracker.tag.html"></script>
+    <script type="riot/tag" src="/public/views/project-list.tag.html"></script>
     <script type="riot/tag" src="/public/views/project.tag.html"></script>
     <script type="riot/tag" src="/public/views/new-project.tag.html"></script>
     <script type="riot/tag" src="/public/views/new-issue.tag.html"></script>
     <script type="riot/tag" src="/public/views/issue-list.tag.html"></script>
-
-    <script src="/node_modules/riot/riot+compiler.min.js"></script>
-
-    <script src="/public/models/issue.js"></script>
-    <script src="/public/models/project.js"></script>
-    <script src="/public/models/issue-tracker.js"></script>
 
     <script>
         riot.mount('issue-tracker');
