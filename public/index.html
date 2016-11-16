@@ -85,7 +85,8 @@
     <script type="riot/tag" src="/public/views/issue-list.tag.html"></script>
 
     <script>
-        riot.mount('issue-tracker');
+        let issueTracker = new IssueTracker();
+        riot.mount('issue-tracker', {issuetracker: issueTracker});
     </script>
 </body>
 </html>

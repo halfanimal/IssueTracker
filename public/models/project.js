@@ -14,7 +14,7 @@ class Project {
 
         self.on('addIssue', function(issue) {
             issue.id = self.uuid();
-            self.issues.push(issue);
+            self.data.issues.push(issue);
             self.trigger('issueAdded');
             self.trigger('updateCollection');
         });
@@ -30,7 +30,14 @@ class Project {
             self.data.issues.splice(indexToRemove, 1);
             self.trigger('issueRemoved');
             self.trigger('updateCollection');
-        })
+        });
+
+        self.on('select', function() {
+            console.log('Project selected');
+            self.trigger('selected');
+        });
+
+
     }
 
     uuid() {
@@ -50,8 +57,16 @@ class Project {
                 openIssueCount++;
             }
         });
-        console.log('issues: ', openIssueCount);
         return openIssueCount;
+    }
+
+    getAllIssues() {
+        return this.data.issues;
+    }
+
+
+    getTitle() {
+        return this.data.title;
     }
 }
 

@@ -18,24 +18,25 @@
         </div>
 
     </div>-->
-     <project-list issuetracker="{issueTracker}"></project-list>
-     <new-issue></new-issue>
+     <project-list issuetracker="{issuetracker}"></project-list>
+     <new-issue issuetracker="{issuetracker}"></new-issue>
+     <issue-list issuetracker="{issuetracker}"></issue-list>
     <script>
         var tag = this;
 console.log('otps: ', tag.opts);
-        tag.issueTracker = new IssueTracker();
+        tag.issuetracker = tag.opts.issuetracker;
 
         tag.allProjects = function() {
-            return tag.issueTracker.collection;
+            return tag.issuetracker.collection;
         }
 
-        tag.issueTracker.on('collectionUpdated', function() {
+        tag.issuetracker.on('collectionUpdated', function() {
             tag.update();
         })
 
         tag.on('mount', function() {
             console.log('Fetching collection from localStorage.');
-            tag.issueTracker.trigger('fetchCollection');
+            tag.issuetracker.trigger('fetchCollection');
         });
 
     </script>

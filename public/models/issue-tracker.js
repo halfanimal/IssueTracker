@@ -7,7 +7,11 @@ class IssueTracker {
 
         self.on('fetchCollection', function() {
             self.collection = (JSON.parse(localStorage.getItem(self.localStorageKey)) || []).map(function(project) {
-                return new Project(project);
+                let p = new Project(project);
+                p.on("selected", function() {
+                    self.trigger('projectSelected', p);
+                });
+                return p;
             });
             self.trigger('collectionFetched');
         });

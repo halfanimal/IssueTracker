@@ -14,38 +14,33 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><input type="checkbox" checked="true"></td>
-                    <td>Implement HTML and CSS with Bootstrap or using custom code</td>
-                    <td>2016-10-08</td>
-                    <td>
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>Use jQuery Datepicker for the issue date ﬁeld</td>
-                    <td>2016-10-08</td>
-                    <td>
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td> Build a webserver in node that allows you to serve the prototype</td>
-                    <td>2016-10-08</td>
-                    <td>
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                    </td>
-                </tr>
+                <virtual if="{project !== null}">
+                    <tr each="{issue in project.getAllIssues()}">
+                        <td><input type="checkbox" checked='{issue.done}'></td>
+                        <td>{issue.title}</td>
+                        <td>{issue.date}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </virtual>
                 </tbody>
             </table>
         </div>
     </div>
+    <script>
+        "use_strict"
+
+        let tag = this;
+
+        tag.project = null;
+
+        tag.opts.issuetracker.on('projectSelected', function(p) {
+            tag.project = p;
+            console.log('bbbbbbbbbbbbbbbbbbbbbbb', p);
+            tag.update();
+        });
+    </script>
 </issue-list>

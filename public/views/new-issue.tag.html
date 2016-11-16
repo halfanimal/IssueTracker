@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="input-group">
-                        <input type="text" id="issue-datepicker" class="form-control" placeholder="pick a date..." aria-label="issue-datepicker">
+                        <input name="title" type="text" id="issue-datepicker" class="form-control" placeholder="pick a date..." aria-label="issue-datepicker">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
@@ -23,11 +23,31 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="new issue...">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button">Create Issue</button>
+                            <button class="btn btn-primary" type="button" onclick="{submit}">Create Issue</button>
                         </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        "use_strict"
+
+        let tag = this;
+
+        let project = null;
+
+        tag.opts.issuetracker.on('projectSelected', function(p) {
+            project = p;
+        });
+
+        submit() {
+            if(project === null) {
+                alert('no project selected!');
+            } else {
+                // toto: add real data.
+                project.trigger("addIssue", new Issue('title', 'date', 'priority', false));
+            }
+        }
+    </script>
 </new-issue>
