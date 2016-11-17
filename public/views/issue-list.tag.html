@@ -15,15 +15,7 @@
                 </thead>
                 <tbody>
                 <virtual if="{project !== null}">
-                    <tr each="{issue in project.getAllIssues()}">
-                        <td><input type="checkbox" checked='{issue.done}'></td>
-                        <td>{issue.title}</td>
-                        <td>{issue.date}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </td>
+                    <tr data-is="issue" each="{issue in project.getAllIssues()}" issue="{issue}">
                     </tr>
                 </virtual>
                 </tbody>

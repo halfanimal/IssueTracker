@@ -1,7 +1,6 @@
 <project>
-    <button type="button" class="list-group-item" onclick="{select}"><span class="badge">{ opts.project.getOpenIssues() }</span>{ opts.project.getTitle() }</button>
+    <button id='button123' type="button" class="list-group-item" onclick="{select}"><span class="badge">{ opts.project.getOpenIssues() }</span>{ opts.project.getTitle() }</button>
 
-<!--<button type="button" class="list-group-item active"><span class="badge">5</span>Project 1</button>-->
     <script>
     "use_strict"
     let tag = this;
@@ -11,9 +10,16 @@
         console.log('updated');
     });
 
+    opts.project.on('unselect', function() {
+        $("#button123", tag.root).removeClass('active'); 
+    });
+
     tag.select = function(e) {
-        console.log('select', e);
-        opts.project.trigger("select");
+        console.log('addClass', tag.root);
+        $("#button123", tag.root).addClass('active'); // (geht nicht vermutlich weil root ein virtueller tag ist.)
+        //$("#button123").addClass('active');
+         console.log('addClass2', tag.button123);
+        opts.project.select();
     };
 
     </script>

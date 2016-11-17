@@ -4,40 +4,70 @@ class Project {
         console.assert(typeof(data.title) === 'string');
         let self = this;
 
-        self.data = data;
         riot.observable(self);
 
-        if(self.data.id === undefined)
-            self.id = self.uuid();
-        if(self.data.issues === undefined)
+        self.data = {};
+
+        self.data.title = data.title;
+
+        if(data.id === undefined)
+            self.data.id = self.uuid();
+        else
+            self.data.id = data.id;
+
+        if(data.issues === undefined) {
             self.data.issues = [];
+        } else {
+            self.data.issues = [];
+            data.issues.forEach(function(issueData) {
+                self.createIssue(issueData);
+            });
+        }
+    }
 
-        self.on('addIssue', function(issue) {
-            issue.id = self.uuid();
-            self.data.issues.push(issue);
-            self.trigger('issueAdded');
+    getAllData() {
+        let self = this;
+        return {
+            id: self.data.id,
+            title: self.data.title,
+            issues: self.data.issues.map(function(issue) { return issue.getAllData(); })
+        };
+    }
+
+    createIssue(issueData) {
+        let self = this;
+        if(issueData.id === undefined) {
+            issueData.id = self.data.id;
+        }
+        let issue = new Issue(issueData);
+
+        issue.on('remove', function() {
+            self.removeIssue(issue);
+        });
+
+        issue.on('doneToggled', function() {
             self.trigger('updateCollection');
         });
-        
-        self.on('removeIssue', function(issue) {
-            var indexToRemove;
-            for(i = 0; self.data.issues.length; i++) {
-                if(issue.id == self.data.issues[i].id) {
-                    indexToRemove = i;
-                    break;
-                }
-            }
-            self.data.issues.splice(indexToRemove, 1);
-            self.trigger('issueRemoved');
-            self.trigger('updateCollection');
-        });
+        self.data.issues.push(issue);
 
-        self.on('select', function() {
-            console.log('Project selected');
-            self.trigger('selected');
-        });
+        return issue;
+    }
 
+    addIssue(issueData) {
+        let self = this;
 
+        self.createIssue(issueData);
+
+        self.trigger('issueAdded');
+        self.trigger('updateCollection');
+    }
+
+    removeIssue(issue) {
+        let self = this;
+        self.data.issues.splice(self.data.issues.indexOf(issue), 1);
+        console.log('issues', self.data.issues)
+        self.trigger('issueRemoved');
+        self.trigger('updateCollection');
     }
 
     uuid() {
@@ -53,12 +83,25 @@ class Project {
         let self = this;
         let openIssueCount = 0;
         self.data.issues.forEach(function(issue) {
-            if(issue.done == false) {
+            if(issue.getDone() == false) {
                 openIssueCount++;
             }
         });
         return openIssueCount;
     }
+
+    select() {
+        let self = this;
+        console.log('Project selected');
+        self.trigger('selected');
+    }
+
+    unselect() {
+        let self = this;
+        console.log('Project unselected');
+        self.trigger('unselect');
+    }
+
 
     getAllIssues() {
         return this.data.issues;

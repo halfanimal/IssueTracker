@@ -6,25 +6,13 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="list-group">
-                    <!--<button each="{project in opts.issuetracker.collection}" type="button" class="list-group-item" onclick="{selectMe}" data-project="{project}">
-                        <span class="badge">{ project.getOpenIssues() } </span>
-                        { project.data.title }
-                    </button>-->
-
-                    <project each="{p in opts.issuetracker.collection}" project="{p}"></project>
-
+                    <div class="list-group" style="height: 100%; overflow: auto;">
+                        <project each="{p in opts.issuetracker.collection}" project="{p}"></project>
                     </div>
                 </div>
                 
                 <div class="col-md-8">
                     <new-project issuetracker="{opts.issuetracker}"></new-project>
-                    <!--<div class="input-group">
-                        <input type="text" class="form-control" placeholder="new project...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button">Create Project</button>
-                        </span>
-                    </div>-->
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
 
         tag.submit = function() {
             if(tag.title.value) {
-                issuetracker.trigger('addProject', new Project({title: tag.title.value}));
+                issuetracker.addProject({title: tag.title.value});
                 tag.title.value = '';
             }
         }

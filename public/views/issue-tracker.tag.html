@@ -23,7 +23,7 @@
      <issue-list issuetracker="{issuetracker}"></issue-list>
     <script>
         var tag = this;
-console.log('otps: ', tag.opts);
+        console.log('otps: ', tag.opts);
         tag.issuetracker = tag.opts.issuetracker;
 
         tag.allProjects = function() {
@@ -33,11 +33,6 @@ console.log('otps: ', tag.opts);
         tag.issuetracker.on('collectionUpdated', function() {
             tag.update();
         })
-
-        tag.on('mount', function() {
-            console.log('Fetching collection from localStorage.');
-            tag.issuetracker.trigger('fetchCollection');
-        });
 
     </script>
 </issue-tracker>

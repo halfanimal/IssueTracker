@@ -1,20 +1,44 @@
+"use_strict"
+
 class Issue {
-    constructor(title, date, priority, done) {
+    constructor(data) {
         let self = this;
         riot.observable(self);
+        self.data = {};
+        self.data.id = data.id;
+        self.data.title = data.title;
+        self.data.priority = data.priority;
+        self.data.done = data.done;
+        self.data.date = data.date;
+    }
 
-        self.title = title;
-        self.date = date;
-        self.priority = priority;
-        self.done = done;
+    remove() {
+        this.trigger('remove');
+    }
 
-        self.on('toggleDone', function() {
-            if(self.done == true) {
-                self.done = false;
-            } else {
-                self.done = true;
-            }
-            self.trigger('doneToggled');
-        });
+    toggleDone() {
+        let self = this;
+        if(self.data.done == true) {
+            self.data.done = false;
+        } else {
+            self.data.done = true;
+        }
+        self.trigger('doneToggled');
+    }
+
+    getAllData() {
+        return this.data;
+    }
+
+    getTitle() {
+        return this.data.title;
+    }
+
+    getDone() {
+        return this.data.done;
+    }
+
+    getDate() {
+        return this.data.date;
     }
 }
