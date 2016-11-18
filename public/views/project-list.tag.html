@@ -1,0 +1,29 @@
+<project-list>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Projects</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="list-group project-list" style="height: 100%; overflow: auto;">
+                        <virtual data-is="project" each="{p in opts.issuetracker.collection}" project="{p}"></virtual>
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <new-project issuetracker="{opts.issuetracker}"></new-project>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        "use_strict"
+        let self = this;
+        self.selectMe = function(project) {
+            console.log('e', project);
+            self.opts.issuetracker.trigger('selectProject', project);
+        }
+        console.log('issuetracker',this.opts.issuetracker);
+    </script>
+</project-list>

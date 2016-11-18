@@ -1,0 +1,38 @@
+<issue-list>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Issues</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th class="col-md-1" scope="col">State</th>
+                    <th class="col-md-8" scope="col">Issue</th>
+                    <th class="col-md-2" scope="col">Date</th>
+                    <th class="col-md-1" scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <virtual if="{project !== null}">
+                    <tr data-is="issue" each="{issue in project.getAllIssues()}" issue="{issue}">
+                    </tr>
+                </virtual>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        "use_strict"
+
+        let tag = this;
+
+        tag.project = null;
+
+        tag.opts.issuetracker.on('projectSelected', function(p) {
+            tag.project = p;
+            console.log('bbbbbbbbbbbbbbbbbbbbbbb', p);
+            tag.update();
+        });
+    </script>
+</issue-list>

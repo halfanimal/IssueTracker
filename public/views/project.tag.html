@@ -1,0 +1,29 @@
+<project>
+    <a class="{'list-group-item' + active }" onsubmit="{select}" href="{ '#projects/' + opts.project.getId() }">
+        <span class="badge">{ opts.project.getOpenIssues() }</span>
+        { opts.project.getTitle() }
+    </a>
+
+    <script>
+    "use_strict"
+    let tag = this;
+
+    opts.project.on('updateCollection', function() {
+        tag.update();
+    });
+
+    opts.project.on('unselect', function() {
+        tag.active = '';
+    });
+
+    opts.project.on('selected', function() {
+        tag.active = ' active';
+    });
+
+    tag.active = '';
+    tag.select = function(e) {
+        opts.project.select();
+    };
+
+    </script>
+</project>

@@ -1,0 +1,33 @@
+<issue-tracker>
+     <project-list issuetracker="{issuetracker}"></project-list>
+     <new-issue issuetracker="{issuetracker}"></new-issue>
+     <issue-list issuetracker="{issuetracker}"></issue-list>
+    <script>
+        "use_strict"
+
+        var tag = this;
+        console.log('otps: ', tag.opts);
+        tag.issuetracker = tag.opts.issuetracker;
+
+        tag.allProjects = function() {
+            return tag.issuetracker.collection;
+        };
+
+        tag.issuetracker.on('collectionUpdated', function() {
+            tag.update();
+        });
+
+        var r = riot.route.create();
+        r(highlightCurrentProject);
+
+        function highlightCurrentProject(collection, id) {
+            if(project =tag.issuetracker.getProjectById(id)) {
+                project.select();
+            } else {
+                tag.issuetracker.unselectAllProjects();
+            }
+            tag.update();
+        }
+
+    </script>
+</issue-tracker>

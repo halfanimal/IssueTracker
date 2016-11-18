@@ -1,0 +1,63 @@
+<new-issue>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">New Issue</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <select class="form-control" id="priority">
+                        <option value="" disabled selected style="display: none;">Priority</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input name="title" type="text" id="datepicker" class="form-control" placeholder="pick a date..." aria-label="issue-datepicker">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input id='text' type="text" class="form-control" placeholder="new issue...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button" onclick="{submit}">Create Issue</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        "use_strict"
+
+        let tag = this;
+
+        let project = null;
+
+        tag.on('mount', function() {
+            console.log(tag.root);
+            console.log($("#datepicker", tag.root).datepicker());
+        })
+
+        tag.opts.issuetracker.on('projectSelected', function(p) {
+            project = p;
+        });
+
+        submit() {
+            if(project === null) {
+                alert('no project selected!');
+            } else {
+                console.log('tag', tag.text.value);
+                project.addIssue({
+                    title: tag.text.value, 
+                    date: $("#datepicker", tag.root).datepicker("getDate").toLocaleString(), 
+                    priority: tag.priority.value, 
+                    done: false
+                });
+            }
+        }
+    </script>
+</new-issue>

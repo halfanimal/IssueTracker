@@ -1,0 +1,24 @@
+<issue>
+    <td><input type="checkbox" checked='{opts.issue.getDone()}' onclick="{toggle}"></td>
+    <td>{opts.issue.getTitle()}</td>
+    <td>{opts.issue.getDate()}</td>
+    <td>
+        <button type="button" class="btn btn-danger" onclick="{remove}">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+    </td>
+    <script>
+        "use_strict"
+        let tag = this;
+
+        console.assert(tag.opts.issue !== undefined, 'there is no opt called issue!');
+
+        tag.remove = function() {
+            tag.opts.issue.remove();
+        }
+
+        tag.toggle = function() {
+            tag.opts.issue.toggleDone();
+        }
+    </script>
+</issue>
