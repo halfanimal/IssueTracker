@@ -1,38 +1,29 @@
-<!--suppress ALL -->
 <issue-tracker>
-    <!--<div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Projects</h3>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4">
-                    <ul class="list-group project-list">
-                        <project each={ p in allProjects()} data="{p}"></project>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <new-project issuetracker={ this.issueTracker }></new-project>
-                </div>
-            </div>
-        </div>
-
-    </div>-->
      <project-list issuetracker="{issuetracker}"></project-list>
      <new-issue issuetracker="{issuetracker}"></new-issue>
      <issue-list issuetracker="{issuetracker}"></issue-list>
     <script>
+        "use_strict"
+
         var tag = this;
         console.log('otps: ', tag.opts);
         tag.issuetracker = tag.opts.issuetracker;
 
         tag.allProjects = function() {
             return tag.issuetracker.collection;
-        }
+        };
 
         tag.issuetracker.on('collectionUpdated', function() {
             tag.update();
-        })
+        });
+
+        var r = riot.route.create();
+        r(highlightCurrentProject);
+
+        function highlightCurrentProject(collection, id) {
+
+            tag.update();
+        }
 
     </script>
 </issue-tracker>
