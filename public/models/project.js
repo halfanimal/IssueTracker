@@ -107,6 +107,9 @@ class Project {
         return this.data.issues;
     }
 
+    getId() {
+        return this.data.id;
+    }
 
     getTitle() {
         return this.data.title;

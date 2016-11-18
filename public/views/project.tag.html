@@ -1,5 +1,8 @@
 <project>
-    <button id='button123' type="button" class="{'list-group-item' + active }" onclick="{select}"><span class="badge">{ opts.project.getOpenIssues() }</span>{ opts.project.getTitle() }</button>
+    <a class="{'list-group-item' + active }" onclick="{select}" href="{ '#projects/' + opts.project.getId() }">
+        <span class="badge">{ opts.project.getOpenIssues() }</span>
+        { opts.project.getTitle() }
+    </a>
 
     <script>
     "use_strict"
@@ -7,7 +10,6 @@
 
     opts.project.on('updateCollection', function() {
         tag.update();
-        console.log('updated');
     });
 
     opts.project.on('unselect', function() {
@@ -15,9 +17,7 @@
     });
     tag.active = '';
     tag.select = function(e) {
-        console.log('addClass', tag.root);
         tag.active = ' active';
-         console.log('addClass2', tag.button123);
         opts.project.select();
     };
 
