@@ -34,6 +34,13 @@ class IssueTracker {
 
     }
 
+    unselectAllProjects() {
+        let self = this;
+        self.collection.forEach(function (notSelectedProject) {
+            notSelectedProject.unselect();
+        });
+    }
+
     createProject(projectData) {
         let self = this;
         let project = new Project(projectData);
