@@ -26,6 +26,14 @@ class IssueTracker {
         self.trigger('fetchCollection');
     }
 
+    getProjectById(id) {
+        let self = this;
+        return self.collection.find(function(p) {
+            return p.getId() === id;
+        });
+
+    }
+
     createProject(projectData) {
         let self = this;
         let project = new Project(projectData);
