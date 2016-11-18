@@ -15,9 +15,13 @@
     opts.project.on('unselect', function() {
         tag.active = '';
     });
+
+    opts.project.on('selected', function() {
+        tag.active = ' active';
+    });
+
     tag.active = '';
     tag.select = function(e) {
-        tag.active = ' active';
         opts.project.select();
     };
 
