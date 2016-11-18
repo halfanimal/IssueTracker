@@ -21,7 +21,11 @@
         r(highlightCurrentProject);
 
         function highlightCurrentProject(collection, id) {
-
+            if(project =tag.issuetracker.getProjectById(id)) {
+                project.select();
+            } else {
+                tag.issuetracker.unselectAllProjects();
+            }
             tag.update();
         }
 
