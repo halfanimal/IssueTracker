@@ -23,7 +23,7 @@
                     <div class="input-group">
                         <input id='text' type="text" class="form-control" placeholder="new issue...">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" onclick="{submit}">Create Issue</button>
+                            <button id="create-issue-button" class="btn btn-primary" type="button" onclick="{submit}">Create Issue</button>
                         </span>
                     </div>
                 </div>
@@ -48,15 +48,18 @@
 
         submit() {
             if(project === null) {
-                alert('no project selected!');
+
             } else {
                 console.log('tag', tag.text.value);
                 project.addIssue({
                     title: tag.text.value, 
-                    date: $("#datepicker", tag.root).datepicker("getDate").toLocaleString(), 
+                    date: tag.datepicker.value,
                     priority: tag.priority.value, 
                     done: false
                 });
+                tag.priority.value = '';
+                tag.text.value = '';
+                tag.datepicker.value = '';
             }
         }
     </script>

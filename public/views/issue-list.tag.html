@@ -10,7 +10,8 @@
                     <th class="col-md-1" scope="col">State</th>
                     <th class="col-md-8" scope="col">Issue</th>
                     <th class="col-md-2" scope="col">Date</th>
-                    <th class="col-md-1" scope="col">Delete</th>
+                    <th class="col-md-2" scope="col">Priority</th>
+                    <th class="col-md-1" scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,7 +32,6 @@
 
         tag.opts.issuetracker.on('projectSelected', function(p) {
             tag.project = p;
-            console.log('bbbbbbbbbbbbbbbbbbbbbbb', p);
             tag.update();
         });
     </script>

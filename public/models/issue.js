@@ -41,4 +41,8 @@ class Issue {
     getDate() {
         return this.data.date;
     }
+
+    getPriority() {
+        return this.data.priority;
+    }
 }
