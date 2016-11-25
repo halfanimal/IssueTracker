@@ -51,12 +51,14 @@
 
             } else {
                 console.log('tag', tag.text.value);
-                project.addIssue({
-                    title: tag.text.value, 
-                    date: tag.datepicker.value,
-                    priority: tag.priority.value, 
-                    done: false
-                });
+                if(tag.text.value && tag.datepicker.value && tag.priority.value) {
+                    project.addIssue({
+                        title: tag.text.value,
+                        date: tag.datepicker.value,
+                        priority: tag.priority.value,
+                        done: false
+                    });
+                }
                 tag.priority.value = '';
                 tag.text.value = '';
                 tag.datepicker.value = '';
