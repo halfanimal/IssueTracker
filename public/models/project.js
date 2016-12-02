@@ -37,7 +37,7 @@ class Project {
     createIssue(issueData) {
         let self = this;
         if(issueData.id === undefined) {
-            issueData.id = self.data.id;
+            issueData.id = self.uuid();
         }
         let issue = new Issue(issueData);
 

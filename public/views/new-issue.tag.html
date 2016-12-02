@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-group">
-                        <input id='text' type="text" class="form-control" placeholder="new issue...">
+                        <input id='text' type="text" class="form-control" placeholder="issue title...">
                         <span class="input-group-btn">
                             <button id="create-issue-button" class="btn btn-primary" type="button" onclick="{submit}">Create Issue</button>
                         </span>
@@ -58,10 +58,11 @@
                         priority: tag.priority.value,
                         done: false
                     });
+                    tag.priority.value = '';
+                    tag.text.value = '';
+                    tag.datepicker.value = '';
                 }
-                tag.priority.value = '';
-                tag.text.value = '';
-                tag.datepicker.value = '';
+
             }
         }
     </script>
