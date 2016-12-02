@@ -6,6 +6,15 @@ class IssueTracker {
 
         self.localStorageKey = 'issueTrackerCollection';
 
+
+        let getProjects = function(done) {
+            $.getJSON('/api/projects', function(data) {
+                done(data);
+            });
+        };
+
+
+
         self.on('fetchCollection', function() {
             self.collection = [];
             (JSON.parse(localStorage.getItem(self.localStorageKey)) || []).forEach(function(projectData) {
@@ -58,12 +67,28 @@ class IssueTracker {
             self.trigger('updateCollection');
         });
         self.collection.push(project);
+
+        return project;
+
     }
 
     addProject(projectData) {
 
         let self = this;
-        self.createProject(projectData);
+
+        let postProject = function(project, done) {
+            $.post( 'api/projects', {
+                "id": project.data.id,
+                "client_id": 0,
+                "title": project.data.title,
+                "active": true
+            }, function( data ) {
+                done(data);
+            });
+        }
+
+        let project = self.createProject(projectData);
+        postProject(project);
         self.trigger('updateCollection');
     }
 }
