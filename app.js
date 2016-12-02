@@ -61,6 +61,13 @@ app.get('/api/projects/:id', function(req, res) {
 
 });
 
+/**
+ * This method retrives all projects
+ */
+app.get('/api/projects/', function(req, res) {
+
+});
+
 app.put('/api/projects/:id', function(req, res) {
 
 });
