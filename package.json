@@ -4,7 +4,7 @@
   "description": "web3 project",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
