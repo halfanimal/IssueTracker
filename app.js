@@ -7,6 +7,7 @@ var app = express();
 var fs = require('fs');
 
 const port = 8080;
+const dbFilePath =  __dirname + "/" + "database.json";
 
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -18,32 +19,42 @@ app.get('/', function (req, res) {
 app.delete('/api/project/:project_id/issues/:id', function(req, res){
     console.log('Delete issue ' + req.params.id + ' from project ' + req.params.project_id);
 
-    fs.readFile( __dirname + "/" + "database.json", 'utf8', function (err, data) {
+    fs.readFile(dbFilePath, 'utf8', function (err, data) {
+        if(err)
+            return console.log(err);
+
         data = JSON.parse(data);
 
-        res.send(JSON.stringify(data['issues'].filter(function(issue) {
-            return issue.project_id == req.params.project_id;
-        }).filter(function(issue) {
-            return issue.id != req.params.id;
-        })));
-    });
+        data['issues'] = data['issues'].filter(function (issue) {
+            return !(issue.project_id == req.params.project_id && issue.id == req.params.id);
+        });
 
-    //res.send('Issue ' + req.params.id + ' from project ' + req.params.project_id + ' deleted');
+        fs.writeFile(dbFilePath, JSON.stringify(data), 'utf8', function (err) {
+            if (err)
+                return console.log(err);
+        });
+
+        res.json(data);
+        //res.send('Issue ' + req.params.id + ' from project ' + req.params.project_id + ' deleted');
+    });
 });
 
 
 app.put('/api/project/:project_id/issues/:id', function(req, res){
     console.log(req.params.project_id);
-    res.send(JSON.stringify(req.params.project_id));
+    res.json(req.params.project_id);
 });
 
 app.get('/api/project/:project_id/issues', function(req, res) {
     console.log('Get issues from project: ' + req.params.project_id);
 
-    fs.readFile( __dirname + "/" + "database.json", 'utf8', function (err, data) {
+    fs.readFile(dbFilePath, 'utf8', function (err, data) {
+        if(err)
+            return console.log(err);
+
         data = JSON.parse(data);
 
-        res.send(data['issues'].filter(function(issue) {
+        res.json(data['issues'].filter(function(issue) {
             return issue.project_id == req.params.project_id;
         }));
     });
@@ -78,18 +89,47 @@ app.delete('/api/projects/:id', function(req, res) {
 });
 
 app.get('/api/projects/:id', function(req, res) {
+    console.log('Get project: ' + req.params.id);
 
+    fs.readFile(dbFilePath, 'utf8', function (err, data) {
+        if (err)
+            return console.log(err);
+
+        data = JSON.parse(data);
+
+        res.json(data['projects'].filter(function (project) {
+           return project.id == req.params.id;
+        }));
+    });
 });
 
 /**
  * This method retrives all projects
  */
 app.get('/api/projects/', function(req, res) {
+    console.log('Get projects');
 
+    fs.readFile(dbFilePath, 'utf8', function (err, data) {
+        if (err)
+            return console.log(err);
+
+        data = JSON.parse(data);
+
+        res.json(data['projects']);
+    });
 });
 
 app.put('/api/projects/:id', function(req, res) {
+    console.log('Put project: ' + req.params.id);
 
+    var project = new ProjectModel({
+        id: req.body.id,
+        client_id: req.body.client_id,
+        title: req.body.title,
+        active: req.body.active
+    });
+
+    
 });
 
 app.listen(port, function () {

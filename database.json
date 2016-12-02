@@ -1,15 +1,25 @@
 {
-  "projects" : [],
+  "projects" : [
+    {
+      "id" : 11
+    },
+    {
+      "id" : 12
+    }
+  ],
   "issues" : [
     {
+      "id" : 1,
       "project_id" : 11,
       "title" : "test 11"
     },
     {
+      "id" : 2,
       "project_id" : 12,
       "title" : "test 12"
     },
     {
+      "id" : 3,
       "project_id" : 12,
       "title" : "test issue 56"
     }
