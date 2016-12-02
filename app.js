@@ -33,6 +33,38 @@ app.post('/api/project/:project_id/issues', function(req, res) {
 
 });
 
+app.get('/api/tests/plus', function(req, res) {
+
+});
+
+app.post('/api/tests/minus', function(req, res) {
+
+});
+
+app.post('/api/tests/echo', function(req, res) {
+
+});
+
+app.put('/api/tests/echo', function(req, res) {
+
+});
+
+app.post('/api/projects', function(req, res) {
+
+});
+
+app.delete('/api/projects/:id', function(req, res) {
+
+});
+
+app.get('/api/projects/:id', function(req, res) {
+
+});
+
+app.put('/api/projects/:id', function(req, res) {
+
+});
+
 app.listen(port, function () {
     console.log('Server listening on: http://localhost:%s', port);
 });
