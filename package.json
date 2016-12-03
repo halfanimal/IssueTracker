@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/halfanimal/IssueTracker#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
     "jquery": "^3.1.1",
