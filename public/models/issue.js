@@ -23,7 +23,7 @@ class Issue {
         } else {
             self.data.done = true;
         }
-        self.trigger('doneToggled');
+        self.trigger('doneToggled', self);
     }
 
     getAllData() {

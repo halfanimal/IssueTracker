@@ -47,8 +47,27 @@ class Project {
             self.removeIssue(issue);
         });
 
-        issue.on('doneToggled', function() {
-            self.trigger('updateCollection');
+        issue.on('doneToggled', function(issue) {
+            $.ajax({
+                type: 'PUT',
+                url: '/api/project/' + self.data.id + '/issues/' + issue.getId(),
+                data: JSON.stringify({
+                    id: issue.getId(),
+                    project_id: self.data.id,
+                    "client_id": 0,
+                    "project_client_id": 0,
+                    "done": issue.getDone(),
+                    title: issue.getTitle(),
+                    "priority": issue.getPriority(),
+                    "due_date": issue.getDate()
+                }),
+                success: function(data) {
+                    self.trigger('updateCollection');
+                },
+                contentType: "application/json",
+                dataType: 'json'
+            });
+            
         });
         self.data.issues.push(issue);
 
@@ -60,22 +79,26 @@ class Project {
 
         self.createIssue(issueData);
 
-
-        $.post('/api/project/' + self.data.id + '/issues/', {
-            id: issueData.id,
-            project_id: self.id,
-            "client_id": 0,
-            "project_client_id": 0,
-            "done": issueData.done,
-            title: issueData.title,
-            "priority": issueData.priority,
-            "due_date": "2016-12-03T09:54:42.380Z"
-        }, function(rec) {
-
+        $.ajax({
+            type: 'POST',
+            url: '/api/project/' + self.data.id + '/issues/',
+            data: JSON.stringify({
+                id: issueData.id,
+                project_id: self.data.id,
+                "client_id": 0,
+                "project_client_id": 0,
+                "done": issueData.done,
+                title: issueData.title,
+                "priority": issueData.priority,
+                "due_date": issueData.date
+            }),
+            success: function(data) {
+                self.trigger('issueAdded');
+                self.trigger('updateCollection');
+            },
+            contentType: "application/json",
+            dataType: 'json'
         });
-
-        self.trigger('issueAdded');
-        self.trigger('updateCollection');
     }
 
     removeIssue(issue) {
@@ -125,8 +148,15 @@ class Project {
         $.getJSON('/api/project/' + self.data.id + '/issues', function(issues) {
             self.data.issues = [];
             issues.forEach(function(issueData) {
-                createIssue({id: issueData.id, title: issueData.title});
+                self.createIssue({
+                    id: issueData.id, 
+                    title: issueData.title,
+                    priority: issueData.priority,
+                    done: issueData.done,
+                    date: issueData.due_date
+                });
             });
+            self.trigger('updateCollection');
         });
 
 

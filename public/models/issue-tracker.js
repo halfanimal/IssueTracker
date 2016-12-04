@@ -86,9 +86,9 @@ class IssueTracker {
             type: 'POST',
             url: '/api/projects',
             data: JSON.stringify({
-                "id": projectData.id,
+                "id": project.data.id,
                 "client_id": 0,
-                "title": projectData.title,
+                "title": project.data.title,
                 "active": true
             }),
             success: function(data) { self.trigger('updateCollection'); },
