@@ -1,3 +1,5 @@
+"use strict";
+
 class Project {
     constructor(data) {
         console.assert(data !== undefined && data !== null);
@@ -58,6 +60,20 @@ class Project {
 
         self.createIssue(issueData);
 
+
+        $.post('/api/project/' + self.data.id + '/issues/', {
+            id: issueData.id,
+            project_id: self.id,
+            "client_id": 0,
+            "project_client_id": 0,
+            "done": issueData.done,
+            title: issueData.title,
+            "priority": issueData.priority,
+            "due_date": "2016-12-03T09:54:42.380Z"
+        }, function(rec) {
+
+        });
+
         self.trigger('issueAdded');
         self.trigger('updateCollection');
     }
@@ -65,7 +81,19 @@ class Project {
     removeIssue(issue) {
         let self = this;
         self.data.issues.splice(self.data.issues.indexOf(issue), 1);
-        console.log('issues', self.data.issues)
+        console.log('issues', self.data.issues);
+
+
+        $.ajax({
+            url: '/api/project/' + self.data.id + '/issues/' + issue.getId(),
+            type: 'DELETE',
+            success: function(result) {
+                // Do something with the result
+            }
+        });
+
+
+
         self.trigger('issueRemoved');
         self.trigger('updateCollection');
     }
@@ -93,6 +121,15 @@ class Project {
     select() {
         let self = this;
         console.log('Project selected');
+
+        $.getJSON('/api/project/' + self.data.id + '/issues', function(issues) {
+            self.data.issues = [];
+            issues.forEach(function(issueData) {
+                createIssue({id: issueData.id, title: issueData.title});
+            });
+        });
+
+
         self.trigger('selected');
     }
 

@@ -17,8 +17,12 @@ class IssueTracker {
 
         self.on('fetchCollection', function() {
             self.collection = [];
-            (JSON.parse(localStorage.getItem(self.localStorageKey)) || []).forEach(function(projectData) {
-                self.createProject(projectData);
+            //(JSON.parse(localStorage.getItem(self.localStorageKey)) || [])
+            getProjects(function(data) {
+                console.log('projekte: ', data);
+                data.forEach(function(projectData) {
+                    self.createProject({id: projectData.id, title: projectData.title});
+                });
             });
             
             self.trigger('collectionFetched');
