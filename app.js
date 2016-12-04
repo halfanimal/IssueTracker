@@ -125,9 +125,9 @@ app.post('/api/projects', function(req, res) {
             console.log(err);
 
         data = JSON.parse(data);
-        console.log('data', req.body);
 
         var reqProject = createProjectObj(req.body);
+        console.log('data', reqProject);
 
         data['projects'].push(reqProject);
 
@@ -235,7 +235,8 @@ function createIssueObj(reqBody) {
 }
 
 function createProjectObj(reqBody) {
-    return {id: reqBody.id,
+    return {
+        id: reqBody.id,
         client_id: reqBody.client_id,
         title: reqBody.title,
         active: reqBody.active
