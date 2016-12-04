@@ -1,2 +1,4 @@
-
-{"projects":[{"id":"b40b9cf1-613f-4391-933f-115dd5a9b956","client_id":0,"title":"kjkjgjhghj","active":true},{"id":"2e69e541-9910-4161-a45a-7bea789c1105","client_id":0,"title":"kgkf","active":true}],"issues":[{"id":"a822d74e-b4c3-4f8a-a34a-65f3efdcc9c3","project_id":"b40b9cf1-613f-4391-933f-115dd5a9b956","client_id":0,"project_client_id":0,"done":false,"title":"kjkjhkjgk","priority":"1","due_date":"12/27/2016"},{"id":"8815830a-09aa-477e-8471-95d342e6cc10","project_id":"b40b9cf1-613f-4391-933f-115dd5a9b956","client_id":0,"project_client_id":0,"done":false,"title":"asdasdasdasda","priority":"1","due_date":"12/07/2016"}]}
+{
+  "projects":[],
+  "issues":[]
+}

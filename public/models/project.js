@@ -50,7 +50,7 @@ class Project {
         issue.on('doneToggled', function(issue) {
             $.ajax({
                 type: 'PUT',
-                url: '/api/project/' + self.data.id + '/issues/' + issue.getId(),
+                url:  '/api/project/' + self.data.id + '/issues/' + issue.getId(),
                 data: JSON.stringify({
                     id: issue.getId(),
                     project_id: self.data.id,
@@ -67,7 +67,6 @@ class Project {
                 contentType: "application/json",
                 dataType: 'json'
             });
-            
         });
         self.data.issues.push(issue);
 
@@ -106,7 +105,6 @@ class Project {
         self.data.issues.splice(self.data.issues.indexOf(issue), 1);
         console.log('issues', self.data.issues);
 
-
         $.ajax({
             url: '/api/project/' + self.data.id + '/issues/' + issue.getId(),
             type: 'DELETE',
@@ -114,8 +112,6 @@ class Project {
                 // Do something with the result
             }
         });
-
-
 
         self.trigger('issueRemoved');
         self.trigger('updateCollection');

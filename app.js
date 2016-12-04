@@ -35,7 +35,6 @@ app.delete('/api/project/:project_id/issues/:id', function(req, res){
 
             res.json(data);
         });
-        //res.send('Issue ' + req.params.id + ' from project ' + req.params.project_id + ' deleted');
     });
 });
 
@@ -127,7 +126,6 @@ app.post('/api/projects', function(req, res) {
         data = JSON.parse(data);
 
         var reqProject = createProjectObj(req.body);
-        console.log('data', reqProject);
 
         data['projects'].push(reqProject);
 

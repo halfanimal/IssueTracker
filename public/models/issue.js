@@ -26,6 +26,10 @@ class Issue {
         self.trigger('doneToggled', self);
     }
 
+    getId() {
+        return this.data.id;
+    }
+
     getAllData() {
         return this.data;
     }
