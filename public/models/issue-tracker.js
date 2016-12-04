@@ -81,24 +81,26 @@ class IssueTracker {
         let self = this;
 
         let project = self.createProject(projectData);
- 
+
         $.ajax({
-            type: "POST",
-            url: 'api/projects',
-            data: {
-                "id": project.data.id,
+            type: 'POST',
+            url: '/api/projects',
+            data: JSON.stringify({
+                "id": projectData.id,
                 "client_id": 0,
-                "title": project.data.title,
+                "title": projectData.title,
                 "active": true
-            },
+            }),
+            success: function(data) { self.trigger('updateCollection'); },
+            contentType: "application/json",
+            dataType: 'json'
         });
+
         /*$.post( 'api/projects', {
             "id": projectData.id,
             "client_id": 0,
             "title": projectData.title,
             "active": true
         });*/
-
-        self.trigger('updateCollection');
     }
 }

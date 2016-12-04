@@ -125,7 +125,7 @@ app.post('/api/projects', function(req, res) {
             console.log(err);
 
         data = JSON.parse(data);
-        console.log('data', req);
+        console.log('data', req.body);
 
         var reqProject = createProjectObj(req.body);
 
