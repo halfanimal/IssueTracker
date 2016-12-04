@@ -119,12 +119,13 @@ app.put('/api/tests/echo', function(req, res) {
 
 app.post('/api/projects', function(req, res) {
     console.log('Create and save project');
-
+    
     fs.readFile(dbFilePath, 'utf8', function (err, data) {
         if (err)
             console.log(err);
 
         data = JSON.parse(data);
+        console.log('data', req);
 
         var reqProject = createProjectObj(req.body);
 

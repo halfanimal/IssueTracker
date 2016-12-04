@@ -30,9 +30,9 @@ class IssueTracker {
         
 
         self.on('updateCollection', function() {
-            localStorage.setItem(self.localStorageKey, JSON.stringify(self.collection.map(function(project) {
+            /*localStorage.setItem(self.localStorageKey, JSON.stringify(self.collection.map(function(project) {
                 return project.getAllData();
-            })));
+            })));*/
             self.trigger('collectionUpdated');
         });
 
@@ -80,19 +80,25 @@ class IssueTracker {
 
         let self = this;
 
-        let postProject = function(project, done) {
-            $.post( 'api/projects', {
+        let project = self.createProject(projectData);
+ 
+        $.ajax({
+            type: "POST",
+            url: 'api/projects',
+            data: {
                 "id": project.data.id,
                 "client_id": 0,
                 "title": project.data.title,
                 "active": true
-            }, function( data ) {
-                done(data);
-            });
-        }
+            },
+        });
+        /*$.post( 'api/projects', {
+            "id": projectData.id,
+            "client_id": 0,
+            "title": projectData.title,
+            "active": true
+        });*/
 
-        let project = self.createProject(projectData);
-        postProject(project);
         self.trigger('updateCollection');
     }
 }
