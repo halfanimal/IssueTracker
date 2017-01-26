@@ -3,11 +3,13 @@ var fs = require('fs');
 var path = require("path");
 var express = require('express');
 var body_parser = require('body-parser');
+var morgan = require('morgan');
 
 var app = express();
-var port = parseInt(process.env.PORT, 10) || 8080;;
+var port = parseInt(process.env.PORT, 10) || 8080;
 var dbFilePath =  __dirname + "/" + "database.json";
 
+app.use(morgan('dev'));
 app.use(body_parser.json());
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -17,7 +19,7 @@ app.get('/', function (req, res) {
 });
 
 app.delete('/api/project/:project_id/issues/:id', function(req, res){
-    console.log('Delete issue ' + req.params.id + ' from project ' + req.params.project_id);
+    //console.log('Delete issue ' + req.params.id + ' from project ' + req.params.project_id);
 
     fs.readFile(dbFilePath, 'utf8', function (err, data) {
         if(err)
@@ -40,7 +42,7 @@ app.delete('/api/project/:project_id/issues/:id', function(req, res){
 
 
 app.put('/api/project/:project_id/issues/:id', function(req, res){
-    console.log('Updating issue: ' + req.params.id);
+    //console.log('Updating issue: ' + req.params.id);
 
     fs.readFile(dbFilePath, 'utf8', function (err, data) {
         if (err)
@@ -64,7 +66,7 @@ app.put('/api/project/:project_id/issues/:id', function(req, res){
 });
 
 app.get('/api/project/:project_id/issues', function(req, res) {
-    console.log('Get issues from project: ' + req.params.project_id);
+    //console.log('Get issues from project: ' + req.params.project_id);
 
     fs.readFile(dbFilePath, 'utf8', function (err, data) {
         if(err)
@@ -79,7 +81,7 @@ app.get('/api/project/:project_id/issues', function(req, res) {
 });
 
 app.post('/api/project/:project_id/issues', function(req, res) {
-    console.log('Create and save issue');
+    //console.log('Create and save issue');
 
     fs.readFile(dbFilePath, 'utf8', function (err, data) {
         if (err)
@@ -117,7 +119,7 @@ app.put('/api/tests/echo', function(req, res) {
 });
 
 app.post('/api/projects', function(req, res) {
-    console.log('Create and save project');
+    //console.log('Create and save project');
     
     fs.readFile(dbFilePath, 'utf8', function (err, data) {
         if (err)
@@ -161,7 +163,7 @@ app.delete('/api/projects/:id', function(req, res) {
 });
 
 app.get('/api/projects/:id', function(req, res) {
-    console.log('Get project: ' + req.params.id);
+    //console.log('Get project: ' + req.params.id);
 
     fs.readFile(dbFilePath, 'utf8', function (err, data) {
         if (err)
@@ -179,7 +181,7 @@ app.get('/api/projects/:id', function(req, res) {
  * This method retrives all projects
  */
 app.get('/api/projects/', function(req, res) {
-    console.log('Get projects');
+    //console.log('Get projects');
 
     fs.readFile(dbFilePath, 'utf8', function (err, data) {
         if (err)
@@ -192,7 +194,7 @@ app.get('/api/projects/', function(req, res) {
 });
 
 app.put('/api/projects/:id', function(req, res) {
-    console.log('Updating project: ' + req.params.id);
+    //console.log('Updating project: ' + req.params.id);
 
     fs.readFile(dbFilePath, 'utf8', function (err, data) {
         if (err)
